@@ -43,6 +43,7 @@ public class GoogleQuery {
 		}
 		return retVal;
 	}
+	
 	public HashMap<String, String> query() throws IOException{
 		if(this.content == null) {
 			this.content = fetchContent();
