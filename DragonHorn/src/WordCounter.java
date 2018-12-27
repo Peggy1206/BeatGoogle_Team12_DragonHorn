@@ -18,7 +18,6 @@ public class WordCounter {
 	}
 	
 	private String fetchContent() throws IOException{
-		//HW3
 		URL url = new URL(this.urlStr);
 		URLConnection connection = url.openConnection();
 		InputStream in = connection.getInputStream();
@@ -35,7 +34,6 @@ public class WordCounter {
 	}
 	
 	public int countKeyword(String k) throws IOException{
-		//HW3
 		if (content == null) {
 			content = fetchContent();
 			}
