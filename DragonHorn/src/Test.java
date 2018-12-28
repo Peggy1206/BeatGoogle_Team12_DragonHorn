@@ -15,8 +15,12 @@ public class Test {
 			String Keyword = scanner.next();
 			GoogleQuery googleQuery = new GoogleQuery(Keyword);
 			searchResult = googleQuery.query();
-			for(String item : searchResult.keySet()) {
-	            search += item + " " + searchResult.get(item);
+			for(String item : searchResult.values()) {
+	         //get all url
+			
+				for(int i = 0; i < searchResult.size(); i++) {
+					
+				}
 			}
 			 
 		}
