@@ -15,8 +15,7 @@ public class Test {
 			
 		}
 		scanner.close();
-		
-		
+	
 		
 	}
 }

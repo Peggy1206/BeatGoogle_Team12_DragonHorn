@@ -7,14 +7,14 @@ public class DecideInput {
 	static String search = "";
 	static HashMap<String, String> searchResult = new HashMap<String, String>();
 	String keyword = Test.keyword;
-	public ArrayList<String> urlList = new ArrayList<String>();
+	public static ArrayList<String> urlList = new ArrayList<String>();
 
 	public DecideInput() throws IOException {
 		GoogleQuery googleQuery = new GoogleQuery(keyword);
 		searchResult = googleQuery.query();
 		for(String item:searchResult.values())
 		{
-				urlList.add(item);
+			urlList.add(item);
 				
 		}
 	}
