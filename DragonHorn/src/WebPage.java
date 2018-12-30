@@ -23,4 +23,8 @@ public class WebPage {
 		}
 		
 	}
+	
+	public String getUrl() {
+		return url;
+	}
 }
