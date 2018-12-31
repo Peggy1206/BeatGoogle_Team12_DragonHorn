@@ -12,8 +12,9 @@ public class Test {
 		Scanner scanner = new Scanner(System.in);
 		while(scanner.hasNextLine()) {
 			keyword = scanner.next();
-			GoogleQuery query = new GoogleQuery(keyword);
-			query.query();
+			
+			DecideInput input = new DecideInput();
+			HTMLHandler handelr = new HTMLHandler();
 		
 			Rank rank = new Rank();
 			rank.startCount();
