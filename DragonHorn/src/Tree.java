@@ -7,20 +7,9 @@ import java.util.ArrayList;
 public class Tree {
 	// 一種資料
 	public Node root;
-	public static ArrayList<Tree> urlTree = new ArrayList<Tree>();
 
-	public Tree(WebPage rootPage) {
+	public Tree(WebPage rootPage) throws IOException {
 		this.root = new Node(rootPage);
-	}
-
-	public void buildTree(ArrayList<String> a) throws IOException {
-
-		for (String url : DecideInput.urlList) {
-			for (int i = 0; i < DecideInput.urlList.size(); i++) {
-				Tree tree = new Tree(new WebPage(url, i));
-				urlTree.add(tree);
-			}
-		}
 	}
 
 	public void setPostOrderScore(ArrayList<Keyword> keywords) throws IOException {

@@ -13,8 +13,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.omg.CORBA.portable.InputStream;
+import java.io.InputStream;
 
 public class HTMLHandler {
 
@@ -26,28 +25,46 @@ public class HTMLHandler {
 	private static Map<String, Integer> allurldepth = new HashMap<String, Integer>();
 	// 爬取得深度
 	private static int maxdepth = 2;
+	
+	public ArrayList<Tree> urlTree;
+	
+	//public static ArrayList<Tree> urlTree = new ArrayList<Tree>();
 
-	public static void main(String args[]) {
-		// 確定爬取的網頁地址，此處為噹噹網首頁上的圖書分類進去的網頁
-		// 網址為 http://book.dangdang.com/
-		// String strurl="http://search.dangdang.com/?key=%BB%FA%D0%B5%B1%ED&act=input";
-		String strurl = "http://book.dangdang.com/";
 
-		workurl(strurl, 1);
+// Get child from the url
+	public HTMLHandler() throws IOException{
+		buildTree();
+		work();
 
 	}
-// Get child from the url
-	public HTMLHandler() throws IOException {
-		
-		for(Tree r : Tree.urlTree) {
+	
+	public void buildTree() throws IOException {
+
+		for (String url : DecideInput.searchList) {
+			for (int i = 0; i < DecideInput.searchList.size(); i++) {
+				Tree tree = new Tree(new WebPage(url, i));
+				urlTree.add(tree);
+			}
+		}
+	}
+	
+	public void work() throws IOException {
+		for(Tree r : urlTree) {
 			String url = r.root.webPage.getUrl();
-			ArrayList<String> children = workurl(url,1);
+			ArrayList<String> children = workurl(url,0);
 			for(int i = 0; i< children.size(); i++) {
 				r.root.addChild(new Node(new WebPage(children.get(i), i)));
 			}
-			//(workurl(url, 1), 2)));
+			
+			/*for(Node child : r.root.children) {
+				String url2 = child.webPage.getUrl();
+				ArrayList<String> kids = workurl(url2,1);
+				for(int i = 0; i< kids.size(); i++) {
+					child.addChild(new Node(new WebPage(kids.get(i), i)));
+				}
+			}*/
 		}
-
+		
 	}
 	
 	
@@ -63,6 +80,8 @@ public class HTMLHandler {
 				// 通過url創建與網頁的連接
 				URLConnection conn = url.openConnection();
 				// 通過鏈接取得網頁返回的數據
+				conn.addRequestProperty("User-Agent", 
+						"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
 				InputStream is = (InputStream) conn.getInputStream();
 
 				System.out.println(conn.getContentEncoding());
@@ -132,5 +151,4 @@ public class HTMLHandler {
 		
 		return tempChild;
 	}
-
 }
