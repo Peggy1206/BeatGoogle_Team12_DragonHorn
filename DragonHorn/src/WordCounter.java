@@ -13,10 +13,7 @@ public class WordCounter {
 	private String urlStr;
 	private String content;
 
-	public DecideInput userInput = new DecideInput();
-	public HTMLHandler handler = new HTMLHandler();
-	
-	
+
 	// constructor
 	public WordCounter(String urlStr) throws IOException {
 		this.urlStr = urlStr;

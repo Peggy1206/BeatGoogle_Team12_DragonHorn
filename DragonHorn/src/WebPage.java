@@ -8,6 +8,8 @@ public class WebPage {
 	public int name;
 	public WordCounter counter;
 	public double score;
+	public double sumScore;//the score add itself and its children
+	
 	
 	public WebPage(String url, int name) throws IOException {
 		this.url = url;
