@@ -40,9 +40,9 @@ public class Tree {
 			System.out.println("  ");
 		}
 		if (startNode.childern.isEmpty()) {
-			System.out.println("(" + startNode.webPage.name + ", " + startNode.nodeScore + ")");
+			System.out.println("(" + startNode.webPage.getUrl() + ", " + startNode.nodeScore + ")");
 		} else {
-			System.out.println("(" + startNode.webPage.name + ", " + startNode.nodeScore + ")");
+			System.out.println("(" + startNode.webPage.getUrl() + ", " + startNode.nodeScore + ")");
 			for (Node child : startNode.childern) {
 				printTree(child);
 			}

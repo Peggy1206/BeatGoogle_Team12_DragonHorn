@@ -41,7 +41,7 @@ public class Rank {
         if (node == null) {
             return; 
         }
-        if(node.childern != null) {
+        if(!node.childern.isEmpty()) {
         	for(Node child : node.childern) {
         		countPostorder(child);
         	}
@@ -51,9 +51,9 @@ public class Rank {
         
     }
 	
-	public void sum() {
+	public void sum() throws IOException {
 		for(Tree tree : handler.urlTree) {
-			
+			sumPostorder(tree.root);
 		}
 
 	}
@@ -62,14 +62,23 @@ public class Rank {
 		if (node == null) {
             return; 
         }
-        if(node.childern != null) {
+        if(!node.childern.isEmpty()) {
             for(Node child : node.childern) {
             	sumPostorder(child);
         	}
+            for(Node child : node.childern) {
+            	node.webPage.sumScore += child.webPage.sumScore; 
+            }
         }else {
         	node.webPage.sumScore = node.webPage.score;
         	
         }
         
+	}
+	
+	public void printTree() {
+		for(Tree tree : handler.urlTree) {
+			tree.printTree();
+		}
 	}
 }
