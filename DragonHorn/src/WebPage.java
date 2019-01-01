@@ -5,11 +5,13 @@ import java.util.ArrayList;
 
 public class WebPage {
 	public String url;
-	public String name;
+	public int name;
 	public WordCounter counter;
 	public double score;
+	public double sumScore;//the score add itself and its children
 	
-	public WebPage(String url, String name) {
+	
+	public WebPage(String url, int name) throws IOException {
 		this.url = url;
 		this.name = name;
 		this.counter = new WordCounter(url);
@@ -22,5 +24,9 @@ public class WebPage {
 			this.score +=counter.countKeyword(k.name) * k.weight;
 		}
 		
+	}
+	
+	public String getUrl() {
+		return url;
 	}
 }
