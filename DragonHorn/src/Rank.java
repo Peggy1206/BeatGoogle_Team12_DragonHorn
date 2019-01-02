@@ -52,6 +52,7 @@ public class Rank {
         
     }
 	
+	//sum each tree
 	public void sum() throws IOException {
 		for(Tree tree : handler.urlTree) {
 			sumPostorder(tree.root);
@@ -59,6 +60,7 @@ public class Rank {
 
 	}
 	
+	//for each tree sum their own scores(add children)
 	public void sumPostorder(Node node) throws IOException{
 		if (node == null) {
             return; 
