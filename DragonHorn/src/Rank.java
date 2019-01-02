@@ -5,14 +5,14 @@ import java.util.ArrayList;
 
 public class Rank {
 	
-	public DecideInput userInput;
+	//public DecideInput userInput;
 	public HTMLHandler handler;
 	public ArrayList<Keyword> keyword = new ArrayList<Keyword>();
 	
-	public Rank() throws IOException{
+	public Rank(HTMLHandler decide) throws IOException{
 		
-		userInput = new DecideInput();
-		handler = new HTMLHandler();
+		//userInput = new DecideInput();
+		this.handler = decide;
 		addKeyword();
 	}
 	

@@ -28,11 +28,14 @@ public class HTMLHandler {
 	
 	public ArrayList<Tree> urlTree;
 	
+	public DecideInput decide;
+	
 	//public static ArrayList<Tree> urlTree = new ArrayList<Tree>();
 
 
 // Get child from the url
-	public HTMLHandler() throws IOException{
+	public HTMLHandler(DecideInput decide) throws IOException{
+		this.decide = decide;
 		buildTree();
 		work();
 
@@ -40,8 +43,8 @@ public class HTMLHandler {
 	
 	public void buildTree() throws IOException {
 
-		for (String url : DecideInput.searchList) {
-			for (int i = 0; i < DecideInput.searchList.size(); i++) {
+		for (String url : decide.searchList) {
+			for (int i = 0; i < decide.searchList.size(); i++) {
 				Tree tree = new Tree(new WebPage(url, i));
 				urlTree.add(tree);
 			}

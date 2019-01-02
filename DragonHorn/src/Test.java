@@ -14,9 +14,9 @@ public class Test {
 			keyword = scanner.next();
 			
 			DecideInput input = new DecideInput();
-			HTMLHandler handelr = new HTMLHandler();
-		
-			Rank rank = new Rank();
+			HTMLHandler handeler = new HTMLHandler(input);
+			Rank rank = new Rank(handeler);
+			
 			rank.startCount();
 			rank.sum();
 			rank.printTree();

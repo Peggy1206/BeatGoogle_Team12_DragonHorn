@@ -19,4 +19,8 @@ public class DecideInput {
 		}
 	}
 	
+	public HashMap<String, String> getResult(){
+		return searchResult;
+	}
+	
 }
