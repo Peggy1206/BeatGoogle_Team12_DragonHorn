@@ -36,6 +36,7 @@ public class Rank {
 		}
 	}
 	
+	//count nodes' score
 	void countPostorder(Node node) throws IOException 
     { 
         if (node == null) {
