@@ -9,20 +9,22 @@ public class Test {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		Scanner scanner = new Scanner(System.in);
+		/*Scanner scanner = new Scanner(System.in);
 		while(scanner.hasNextLine()) {
-			keyword = scanner.next();
+			keyword = scanner.next();*/
 			
 			DecideInput input = new DecideInput();
-			HTMLHandler handeler = new HTMLHandler(input);
+			input.getResult();
+			
+			/*HTMLHandler handeler = new HTMLHandler(input);
 			Rank rank = new Rank(handeler);
 			
 			rank.startCount();
 			rank.sum();
-			rank.printTree();
-		}
+			rank.printTree();*/
 		
-		scanner.close();
+		
+		//scanner.close();
 	
 		
 	}
