@@ -12,15 +12,18 @@ public class DecideInput {
 
 	public DecideInput() throws IOException {
 		Scanner scanner = new Scanner(System.in);
-		while (scanner.hasNextLine()) {
+		//while (scanner.hasNextLine()) {
 			Keyword = scanner.next();
 			GoogleQuery googleQuery = new GoogleQuery(Keyword);
 			searchResult = googleQuery.query();
-			for (String item : searchResult.values()) {
+			/*for (String item : searchResult.values()) {
 				searchList.add(item);
 
+			}*/
+			for(String item : searchResult.keySet()) {
+				searchList.add(searchResult.get(item));
 			}
-		}
+		//}
 	}
 
 	public ArrayList<String> getResult() {

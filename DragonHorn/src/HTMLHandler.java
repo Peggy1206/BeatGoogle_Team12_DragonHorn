@@ -37,11 +37,12 @@ public class HTMLHandler {
 	public HTMLHandler(DecideInput decide) throws IOException{
 		this.decide = decide;
 		buildTree();
-		work();
+		//work();
 
 	}
 	
 	public void buildTree() throws IOException {
+		urlTree = new ArrayList<Tree>();
 
 		for (String url : decide.searchList) {
 			for (int i = 0; i < decide.searchList.size(); i++) {
@@ -49,6 +50,14 @@ public class HTMLHandler {
 				urlTree.add(tree);
 			}
 		}
+	}
+	
+	public String printUrlTree(){
+		String result = "";
+		for(Tree url : urlTree) {
+			result += url.root.webPage.url + " ";
+		}
+		return result;
 	}
 	
 	public void work() throws IOException {
@@ -83,8 +92,8 @@ public class HTMLHandler {
 				// 通過url創建與網頁的連接
 				URLConnection conn = url.openConnection();
 				// 通過鏈接取得網頁返回的數據
-				conn.addRequestProperty("User-Agent", 
-						"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
+				conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
+				
 				InputStream is = (InputStream) conn.getInputStream();
 
 				System.out.println(conn.getContentEncoding());

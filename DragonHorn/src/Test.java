@@ -14,10 +14,14 @@ public class Test {
 			keyword = scanner.next();*/
 			
 			DecideInput input = new DecideInput();
-			input.getResult();
+			//input.getResult();
 			
-			/*HTMLHandler handeler = new HTMLHandler(input);
-			Rank rank = new Rank(handeler);
+			HTMLHandler handeler = new HTMLHandler(input);
+			//System.out.println(handeler.printUrlTree());
+			//handeler.buildTree();
+			handeler.work();
+			
+			/*Rank rank = new Rank(handeler);
 			
 			rank.startCount();
 			rank.sum();
