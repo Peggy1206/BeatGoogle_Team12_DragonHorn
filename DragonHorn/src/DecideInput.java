@@ -5,14 +5,16 @@ import java.util.Scanner;
 
 public class DecideInput {
 	static String search = "";
-	static HashMap<String, String> searchResult = new HashMap<String, String>();
+	static HashMap<String, String> searchResult;
 	//String keyword = Test.keyword;
 	String Keyword;
-	public static ArrayList<String> searchList = new ArrayList<String>();
+	public ArrayList<String> searchList;
 
 	public DecideInput() throws IOException {
+		searchResult = new HashMap<String, String>();
+		searchList = new ArrayList<String>();
 		Scanner scanner = new Scanner(System.in);
-		//while (scanner.hasNextLine()) {
+		while (scanner.hasNextLine()) {
 			Keyword = scanner.next();
 			GoogleQuery googleQuery = new GoogleQuery(Keyword);
 			searchResult = googleQuery.query();
@@ -20,14 +22,23 @@ public class DecideInput {
 				searchList.add(item);
 
 			}*/
-			for(String item : searchResult.keySet()) {
-				searchList.add(searchResult.get(item));
-			}
-		//}
+			addSearchList();
+		}
+	}
+	
+	public void addSearchList() {
+		
+		for(String item : searchResult.keySet()) {
+			searchList.add(searchResult.get(item));
+			//System.out.println(searchResult.get(item));
+		}
+		
 	}
 
-	public ArrayList<String> getResult() {
-		return searchList;
+	public void getResult() {
+		for(String url : searchList) {
+			System.out.println(url);
+		}	
 	}
 
 }
