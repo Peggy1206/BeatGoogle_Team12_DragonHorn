@@ -21,6 +21,10 @@ public class Test {
 			//handeler.buildTree();
 			handeler.work();
 			
+			for(Tree root : handeler.urlTree) {
+				root.printTree();
+			}
+			
 			/*Rank rank = new Rank(handeler);
 			
 			rank.startCount();
