@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class DecideInput {
 	static String search = "";
-	static HashMap<String, String> searchResult;
+	public HashMap<String, String> searchResult;
 	//String keyword = Test.keyword;
 	String Keyword;
 	public ArrayList<String> searchList;
@@ -22,17 +22,17 @@ public class DecideInput {
 				searchList.add(item);
 
 			}*/
-			addSearchList();
+			//addSearchList(searchResult);
 		}
 	}
 	
-	public void addSearchList() {
+	public void addSearchList(HashMap<String, String> result) {
 		
-		for(String item : searchResult.keySet()) {
-			searchList.add(searchResult.get(item));
+		for(String item : result.keySet()) {
+			searchList.add(result.get(item));
 			//System.out.println(searchResult.get(item));
 		}
-		
+		//getResult();
 	}
 
 	public void getResult() {

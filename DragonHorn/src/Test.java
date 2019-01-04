@@ -17,13 +17,13 @@ public class Test {
 			//input.getResult();
 			
 			HTMLHandler handeler = new HTMLHandler(input);
-			//System.out.println(handeler.printUrlTree());
-			//handeler.buildTree();
-			handeler.work();
+			System.out.println(handeler.printUrlTree());
 			
-			for(Tree root : handeler.urlTree) {
+			//handeler.work();
+			
+			/*for(Tree root : handeler.urlTree) {
 				root.printTree();
-			}
+			}*/
 			
 			/*Rank rank = new Rank(handeler);
 			

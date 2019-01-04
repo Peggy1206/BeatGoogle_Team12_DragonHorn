@@ -25,61 +25,57 @@ public class HTMLHandler {
 	private static Map<String, Integer> allurldepth = new HashMap<String, Integer>();
 	// 爬取得深度
 	private static int maxdepth = 2;
-	
+
 	public ArrayList<Tree> urlTree;
-	
+
 	public DecideInput decide;
-	
-	//public static ArrayList<Tree> urlTree = new ArrayList<Tree>();
 
+	// public static ArrayList<Tree> urlTree = new ArrayList<Tree>();
 
-// Get child from the url
-	public HTMLHandler(DecideInput decide) throws IOException{
+	// Get child from the url
+	public HTMLHandler(DecideInput decide) throws IOException {
 		this.decide = decide;
-		buildTree();
-		//work();
-
-	}
-	
-	public void buildTree() throws IOException {
-		urlTree = new ArrayList<Tree>();
-
-		for (String url : decide.searchList) {
-			for (int i = 0; i < decide.searchList.size(); i++) {
-				Tree tree = new Tree(new WebPage(url, i));
-				urlTree.add(tree);
-			}
-		}
-	}
-	
-	public String printUrlTree(){
-		String result = "";
-		for(Tree url : urlTree) {
-			result += url.root.webPage.url + " ";
-		}
-		return result;
-	}
-	
-	public void work() throws IOException {
-		for(Tree r : urlTree) {
-			String url = r.root.webPage.getUrl();
-			ArrayList<String> children = workurl(url,0);
-			for(int i = 0; i< children.size(); i++) {
-				r.root.addChild(new Node(new WebPage(children.get(i), i)));
-			}
-			
-			/*for(Node child : r.root.children) {
-				String url2 = child.webPage.getUrl();
-				ArrayList<String> kids = workurl(url2,1);
-				for(int i = 0; i< kids.size(); i++) {
-					child.addChild(new Node(new WebPage(kids.get(i), i)));
-				}
-			}*/
-		}
+		urlTree = buildTree();
+		// work();
 		
 	}
-	
-	
+
+	public ArrayList<Tree> buildTree() throws IOException {
+
+		ArrayList<Tree> treeList = new ArrayList<Tree>();
+		for (String item : decide.searchResult.keySet()) {
+
+			Tree tree = new Tree(new WebPage(decide.searchResult.get(item), item));
+			treeList.add(tree);
+		}
+		return treeList;
+	}
+
+	public String printUrlTree() {
+		StringBuilder result = new StringBuilder();
+		for (Tree url : urlTree) {
+			result.append(url.root.webPage.url+ "\n ") ;
+		}
+		return result.toString();
+	}
+
+	public void work() throws IOException {
+		for (Tree r : urlTree) {
+			String url = r.root.webPage.getUrl();
+			ArrayList<String> children = workurl(url, 0);
+			for (int i = 0; i < children.size(); i++) {
+				r.root.addChild(new Node(new WebPage(children.get(i), i)));
+			}
+
+			/*
+			 * for(Node child : r.root.children) { String url2 = child.webPage.getUrl();
+			 * ArrayList<String> kids = workurl(url2,1); for(int i = 0; i< kids.size(); i++)
+			 * { child.addChild(new Node(new WebPage(kids.get(i), i))); } }
+			 */
+		}
+
+	}
+
 	public static ArrayList<String> workurl(String strurl, int depth) {
 		String href = "";
 		ArrayList<String> tempChild = new ArrayList<String>();
@@ -93,7 +89,7 @@ public class HTMLHandler {
 				URLConnection conn = url.openConnection();
 				// 通過鏈接取得網頁返回的數據
 				conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
-				
+
 				InputStream is = (InputStream) conn.getInputStream();
 
 				System.out.println(conn.getContentEncoding());
@@ -107,12 +103,13 @@ public class HTMLHandler {
 				// 正則表達式的匹配規則提取該網頁的鏈接
 				Pattern p = Pattern.compile("<a .*href=.+</a>");
 				// 創建一個輸出流，用於保存文檔,文檔名為執行時間，以防重複
-				//PrintWriter pw = new PrintWriter(new File(System.currentTimeMillis() + ".txt"));
+				// PrintWriter pw = new PrintWriter(new File(System.currentTimeMillis() +
+				// ".txt"));
 
 				while ((line = br.readLine()) != null) {
 					// System.out.println(line);
 					// 編寫正則，匹配超鏈接地址
-					//pw.println(line);
+					// pw.println(line);
 					Matcher m = p.matcher(line);
 					while (m.find()) {
 						href = m.group();
@@ -146,7 +143,7 @@ public class HTMLHandler {
 					}
 
 				}
-				//pw.close();
+				// pw.close();
 				br.close();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -154,13 +151,15 @@ public class HTMLHandler {
 			}
 			// 將當前url歸列到alloverurl中
 			alloverurl.add(strurl);
-			//System.out.println(strurl + "網頁爬取完成，已爬取數量：" + alloverurl.size() + "，剩餘爬取數量：" + allwaiturl.size());
+			// System.out.println(strurl + "網頁爬取完成，已爬取數量：" + alloverurl.size() + "，剩餘爬取數量："
+			// + allwaiturl.size());
 		}
 		// 用遞歸的方法繼續爬取其他鏈接
-		/*String nexturl = allwaiturl.get(0);
-		allwaiturl.remove(0);
-		workurl(nexturl, allurldepth.get(nexturl));*/
-		
+		/*
+		 * String nexturl = allwaiturl.get(0); allwaiturl.remove(0); workurl(nexturl,
+		 * allurldepth.get(nexturl));
+		 */
+
 		return tempChild;
 	}
 }
