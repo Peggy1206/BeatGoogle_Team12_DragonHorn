@@ -35,7 +35,7 @@ public class HTMLHandler {
 	// Get child from the url
 	public HTMLHandler(DecideInput decide) throws IOException {
 		this.decide = decide;
-		urlTree = buildTree();
+		this.urlTree = buildTree();
 		// work();
 		
 	}
@@ -52,11 +52,12 @@ public class HTMLHandler {
 	}
 
 	public String printUrlTree() {
-		StringBuilder result = new StringBuilder();
+		/*StringBuilder result = new StringBuilder();
 		for (Tree url : urlTree) {
 			result.append(url.root.webPage.url+ "\n ") ;
-		}
-		return result.toString();
+		}*/
+		
+		return urlTree.toString();
 	}
 
 	public void work() throws IOException {
