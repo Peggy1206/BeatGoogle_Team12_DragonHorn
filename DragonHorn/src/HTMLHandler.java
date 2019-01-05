@@ -14,6 +14,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.InputStream;
+import java.util.Scanner;
+
 
 public class HTMLHandler {
 
@@ -28,36 +30,48 @@ public class HTMLHandler {
 
 	public ArrayList<Tree> urlTree;
 
-	public DecideInput decide;
+	//public DecideInput decide;
+	
+	public HashMap<String, String> searchResult;
+
+	String Keyword;
 
 	// public static ArrayList<Tree> urlTree = new ArrayList<Tree>();
 
 	// Get child from the url
-	public HTMLHandler(DecideInput decide) throws IOException {
-		this.decide = decide;
-		this.urlTree = buildTree();
+	public HTMLHandler() throws IOException {
+		//this.decide = decide;
+		//urlTree = new ArrayList<Tree>();
+		searchResult = new HashMap<String, String>();
+		urlTree = buildTree();
+		Scanner scanner = new Scanner(System.in);
+		while (scanner.hasNextLine()) {
+			Keyword = scanner.next();
+			GoogleQuery googleQuery = new GoogleQuery(Keyword);
+			searchResult = googleQuery.query();
+		}
 		// work();
-		
+
 	}
 
 	public ArrayList<Tree> buildTree() throws IOException {
 
 		ArrayList<Tree> treeList = new ArrayList<Tree>();
-		for (String item : decide.searchResult.keySet()) {
+		for (String item : searchResult.keySet()) {
 
-			Tree tree = new Tree(new WebPage(decide.searchResult.get(item), item));
+			Tree tree = new Tree(new WebPage(searchResult.get(item), item));
 			treeList.add(tree);
 		}
 		return treeList;
 	}
 
 	public String printUrlTree() {
-		/*StringBuilder result = new StringBuilder();
+		StringBuilder result = new StringBuilder();
 		for (Tree url : urlTree) {
-			result.append(url.root.webPage.url+ "\n ") ;
-		}*/
-		
-		return urlTree.toString();
+			result.append(url.root.webPage.url + "\n ");
+		}
+
+		return result.toString();
 	}
 
 	public void work() throws IOException {

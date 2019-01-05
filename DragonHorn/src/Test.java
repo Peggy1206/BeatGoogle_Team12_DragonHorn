@@ -13,10 +13,10 @@ public class Test {
 		while(scanner.hasNextLine()) {
 			keyword = scanner.next();*/
 			
-			DecideInput input = new DecideInput();
+			//DecideInput input = new DecideInput();
 			//input.getResult();
 			
-			HTMLHandler handeler = new HTMLHandler(input);
+			HTMLHandler handeler = new HTMLHandler();
 			System.out.println(handeler.printUrlTree());
 			
 			//handeler.work();
@@ -25,8 +25,8 @@ public class Test {
 				root.printTree();
 			}*/
 			
-			/*Rank rank = new Rank(handeler);
-			
+			//Rank rank = new Rank(handeler);
+			/*
 			rank.startCount();
 			rank.sum();
 			rank.printTree();*/

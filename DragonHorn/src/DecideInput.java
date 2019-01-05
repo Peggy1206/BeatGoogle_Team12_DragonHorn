@@ -8,11 +8,11 @@ public class DecideInput {
 	public HashMap<String, String> searchResult;
 	//String keyword = Test.keyword;
 	String Keyword;
-	public ArrayList<String> searchList;
+	//public ArrayList<String> searchList;
 
 	public DecideInput() throws IOException {
 		searchResult = new HashMap<String, String>();
-		searchList = new ArrayList<String>();
+		//searchList = new ArrayList<String>();
 		Scanner scanner = new Scanner(System.in);
 		while (scanner.hasNextLine()) {
 			Keyword = scanner.next();
@@ -26,6 +26,7 @@ public class DecideInput {
 		}
 	}
 	
+	/*
 	public void addSearchList(HashMap<String, String> result) {
 		
 		for(String item : result.keySet()) {
@@ -39,6 +40,6 @@ public class DecideInput {
 		for(String url : searchList) {
 			System.out.println(url);
 		}	
-	}
+	}*/
 
 }
