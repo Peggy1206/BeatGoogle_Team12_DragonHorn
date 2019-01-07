@@ -53,7 +53,7 @@ public class GoogleQuery {
 				
 				Element cite = li.select ("cite").get(0);
 				String citeUrl = cite.text();
-				System.out.println(title + " " + citeUrl);
+				//System.out.println(title + " " + citeUrl);
 				retVal.put(title, citeUrl);
 			}catch(IndexOutOfBoundsException e) {
 				//Do nothing

@@ -43,14 +43,16 @@ public class HTMLHandler {
 		//this.decide = decide;
 		//urlTree = new ArrayList<Tree>();
 		searchResult = new HashMap<String, String>();
-		urlTree = buildTree();
+		
 		Scanner scanner = new Scanner(System.in);
-		while (scanner.hasNextLine()) {
+		if (scanner.hasNext()) {
 			Keyword = scanner.next();
 			GoogleQuery googleQuery = new GoogleQuery(Keyword);
 			searchResult = googleQuery.query();
+			
 		}
 		// work();
+		urlTree = buildTree();
 
 	}
 

@@ -13,8 +13,7 @@ public class Test {
 		while(scanner.hasNextLine()) {
 			keyword = scanner.next();*/
 			
-			//DecideInput input = new DecideInput();
-			//input.getResult();
+			
 			
 			HTMLHandler handeler = new HTMLHandler();
 			System.out.println(handeler.printUrlTree());
