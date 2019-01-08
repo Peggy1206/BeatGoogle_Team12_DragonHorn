@@ -49,15 +49,21 @@ public class WordCounter {
 			content = fetchContent();
 		}
 
+		// To do a case-insensitive search, we turn the whole content and keyword into
+		// upper-case:
 		content = content.toUpperCase();
 		k = k.toUpperCase();
 
-		int count = 0;
-		while (content.indexOf(k) != -1) {
-			content = content.substring(content.indexOf(k) + k.length(), content.length());
-			count++;
+		int retVal = 0;
+		int fromIdx = 0;
+		int found = -1;
+
+		while ((found = content.indexOf(k, fromIdx)) != -1) {
+			retVal++;
+			fromIdx = found + k.length();
 		}
-		return count;
+
+		return retVal;
 	}
 
 }

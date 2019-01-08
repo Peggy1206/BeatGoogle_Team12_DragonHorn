@@ -16,7 +16,6 @@ import java.util.regex.Pattern;
 import java.io.InputStream;
 import java.util.Scanner;
 
-
 public class HTMLHandler {
 
 	// 等待爬取的url
@@ -30,8 +29,8 @@ public class HTMLHandler {
 
 	public ArrayList<Tree> urlTree;
 
-	//public DecideInput decide;
-	
+	// public DecideInput decide;
+
 	public HashMap<String, String> searchResult;
 
 	String Keyword;
@@ -40,16 +39,16 @@ public class HTMLHandler {
 
 	// Get child from the url
 	public HTMLHandler() throws IOException {
-		//this.decide = decide;
-		//urlTree = new ArrayList<Tree>();
+		// this.decide = decide;
+		// urlTree = new ArrayList<Tree>();
 		searchResult = new HashMap<String, String>();
-		
+
 		Scanner scanner = new Scanner(System.in);
 		if (scanner.hasNext()) {
 			Keyword = scanner.next();
 			GoogleQuery googleQuery = new GoogleQuery(Keyword);
 			searchResult = googleQuery.query();
-			
+
 		}
 		// work();
 		urlTree = buildTree();
@@ -61,8 +60,11 @@ public class HTMLHandler {
 		ArrayList<Tree> treeList = new ArrayList<Tree>();
 		for (String item : searchResult.keySet()) {
 
-			Tree tree = new Tree(new WebPage(searchResult.get(item), item));
-			treeList.add(tree);
+			if (searchResult.get(item).contains("http")) {
+				Tree tree = new Tree(new WebPage(searchResult.get(item), item));
+				treeList.add(tree);
+			}
+
 		}
 		return treeList;
 	}

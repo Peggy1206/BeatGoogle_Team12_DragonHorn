@@ -16,13 +16,13 @@ public class Test {
 			
 			
 			HTMLHandler handeler = new HTMLHandler();
-			System.out.println(handeler.printUrlTree());
+			//System.out.println(handeler.printUrlTree());
 			
-			//handeler.work();
+			handeler.work();
 			
-			/*for(Tree root : handeler.urlTree) {
+			for(Tree root : handeler.urlTree) {
 				root.printTree();
-			}*/
+			}
 			
 			//Rank rank = new Rank(handeler);
 			/*
