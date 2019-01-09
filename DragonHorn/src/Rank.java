@@ -42,10 +42,11 @@ public class Rank {
         if (node == null) {
             return; 
         }
-        if(!node.childern.isEmpty()) {
-        	for(Node child : node.childern) {
+        if(!node.children.isEmpty()) {
+        	for(Node child : node.children) {
         		countPostorder(child);
         	}
+        	node.webPage.setScore(keyword);
         }else {
         	node.webPage.setScore(keyword);
         }
@@ -65,11 +66,11 @@ public class Rank {
 		if (node == null) {
             return; 
         }
-        if(!node.childern.isEmpty()) {
-            for(Node child : node.childern) {
+        if(!node.children.isEmpty()) {
+            for(Node child : node.children) {
             	sumPostorder(child);
         	}
-            for(Node child : node.childern) {
+            for(Node child : node.children) {
             	node.webPage.sumScore += child.webPage.sumScore; 
             }
         }else {
@@ -79,9 +80,11 @@ public class Rank {
         
 	}
 	
-	public void printTree() {
+	public void print() {
+
 		for(Tree tree : handler.urlTree) {
-			tree.printTree();
+			tree.eularPrintTree();
 		}
 	}
+	
 }

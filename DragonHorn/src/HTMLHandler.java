@@ -81,11 +81,16 @@ public class HTMLHandler {
 	public void work() throws IOException {
 		for (Tree r : urlTree) {
 			String url = r.root.webPage.getUrl();
-			ArrayList<String> children = workurl(url, 0);
-			for (int i = 0; i < children.size(); i++) {
-				r.root.addChild(new Node(new WebPage(children.get(i), i)));
-			}
 
+			try {
+				ArrayList<String> children = workurl(url, 0);
+				for (int i = 0; i < children.size(); i++) {
+					r.root.addChild(new Node(new WebPage(children.get(i), i)));
+				}
+			} catch (Exception exp) {
+				System.out.println("Can't access the URL:(");
+
+			}
 			/*
 			 * for(Node child : r.root.children) { String url2 = child.webPage.getUrl();
 			 * ArrayList<String> kids = workurl(url2,1); for(int i = 0; i< kids.size(); i++)
@@ -109,13 +114,13 @@ public class HTMLHandler {
 				// 通過鏈接取得網頁返回的數據
 				conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
 
-				InputStream is = (InputStream) conn.getInputStream();
+				InputStream is = conn.getInputStream();
 
-				System.out.println(conn.getContentEncoding());
+				//conn.getContentEncoding();
 				// 一般按行讀取網頁數據，並進行內容分析
 				// 因此用BufferedReader和InputStreamReader把字節流轉化為字符流的緩衝流
 				// 進行轉換時，需要處理編碼格式問題
-				BufferedReader br = new BufferedReader(new InputStreamReader(is, "GB2312"));
+				BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
 				// 按行讀取並打印
 				String line = null;
@@ -166,10 +171,11 @@ public class HTMLHandler {
 				br.close();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				System.out.println("Error:(");
 			}
 			// 將當前url歸列到alloverurl中
-			alloverurl.add(strurl);
+			//alloverurl.add(strurl);
 			// System.out.println(strurl + "網頁爬取完成，已爬取數量：" + alloverurl.size() + "，剩餘爬取數量："
 			// + allwaiturl.size());
 		}

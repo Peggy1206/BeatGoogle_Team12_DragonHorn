@@ -17,7 +17,7 @@ public class GoogleQuery {
 	
 	public GoogleQuery(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
-		this.url = "https://www.google.com.tw/search?q=" + searchKeyword + "&oe=utf8&num=10";
+		this.url = "https://www.google.com.tw/search?q=" + searchKeyword + "&oe=utf8&num=20";
 	}
 	
 	private String fetchContent() throws IOException {

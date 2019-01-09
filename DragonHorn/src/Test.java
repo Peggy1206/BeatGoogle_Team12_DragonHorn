@@ -20,13 +20,17 @@ public class Test {
 			
 			handeler.work();
 			
-			for(Tree root : handeler.urlTree) {
-				root.printTree();
-			}
 			
-			//Rank rank = new Rank(handeler);
-			/*
+			
+			Rank rank = new Rank(handeler);
+			
 			rank.startCount();
+			rank.print();
+			
+			/*for(Tree tree : handeler.urlTree) {
+				tree.eularPrintTree();
+			}
+			/*
 			rank.sum();
 			rank.printTree();*/
 		
