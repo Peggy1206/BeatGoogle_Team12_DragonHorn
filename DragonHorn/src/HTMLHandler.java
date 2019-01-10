@@ -172,7 +172,7 @@ public class HTMLHandler {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
-				System.out.println("Error:(");
+				System.out.println("Wait...");
 			}
 			// 將當前url歸列到alloverurl中
 			//alloverurl.add(strurl);

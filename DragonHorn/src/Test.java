@@ -21,15 +21,16 @@ public class Test {
 			handeler.work();
 			
 			
+			//Rank rank = new Rank(handeler);
 			
-			Rank rank = new Rank(handeler);
-			
+			for(Tree tree : handeler.urlTree) {
+				tree.eularPrintTree();
+			}
+			/*
 			rank.startCount();
 			rank.print();
 			
-			/*for(Tree tree : handeler.urlTree) {
-				tree.eularPrintTree();
-			}
+			/*
 			/*
 			rank.sum();
 			rank.printTree();*/

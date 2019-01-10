@@ -19,25 +19,30 @@ public class WordCounter {
 		this.urlStr = urlStr;
 	}
 
-	
-
-
 	private String fetchContent() throws IOException {
 		// HW3
 
 		URL url = new URL(this.urlStr);
-		URLConnection connection = url.openConnection();
-		InputStream in = connection.getInputStream();
+		URLConnection conn = url.openConnection();
+		InputStream in = conn.getInputStream();
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
-
+		
 		String retVal = "";
 		String line = null;
-
-		while ((line = br.readLine()) != null) {
+		
+		while((line = br.readLine()) != null) {
 			retVal = retVal + line + "\n";
 		}
-
 		return retVal;
+	
+	/*InputStream in = address.openStream();
+BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+StringBuilder result = new StringBuilder();
+String line;
+while((line = reader.readLine()) != null) {
+    result.append(line);
+}
+System.out.println(result.toString());*/
 	}
 
 

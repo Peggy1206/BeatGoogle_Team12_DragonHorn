@@ -28,7 +28,7 @@ public class WebPage {
 		this.score = 0;
 		
 		for(Keyword k : keywords) {
-			this.score +=counter.countKeyword(k.name) * k.weight;
+			this.score += counter.countKeyword(k.name) * k.weight;
 		}
 		
 	}

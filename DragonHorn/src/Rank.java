@@ -8,15 +8,17 @@ public class Rank {
 	//public DecideInput userInput;
 	public HTMLHandler handler;
 	public ArrayList<Keyword> keyword = new ArrayList<Keyword>();
+	public ArrayList<Tree> urlTree;
 	
-	public Rank(HTMLHandler decide) throws IOException{
+	public Rank(HTMLHandler handler) throws IOException{
 		
-		//userInput = new DecideInput();
-		this.handler = decide;
+		this.handler = handler;
+		this.urlTree = handler.urlTree;
 		addKeyword();
+		startCount();
 	}
 	
-	public void addKeyword() {
+	private void addKeyword() {
 		
 		keyword.add(new Keyword("龍角散",-10));
 		keyword.add(new Keyword("飲料",10));
@@ -26,12 +28,12 @@ public class Rank {
 		keyword.add(new Keyword("蜂蜜牛奶",13));
 		keyword.add(new Keyword("珍芋各半",15));
 		keyword.add(new Keyword("純醇奶",13));
-		keyword.add(new Keyword("橙柚青",13));
+		keyword.add(new Keyword("橙柚青",15));
 
 	}
 	
 	public void startCount() throws IOException {
-		for(Tree tree : handler.urlTree) {
+		for(Tree tree : urlTree) {
 			countPostorder(tree.root);
 		}
 	}
@@ -42,20 +44,21 @@ public class Rank {
         if (node == null) {
             return; 
         }
-        if(!node.children.isEmpty()) {
+        if(node.children.isEmpty()) {
+        	node.setNodeScore(keyword);
+        }else {
+        	
         	for(Node child : node.children) {
         		countPostorder(child);
         	}
-        	node.webPage.setScore(keyword);
-        }else {
-        	node.webPage.setScore(keyword);
+        	node.setNodeScore(keyword);
         }
         
     }
 	
 	//sum each tree
 	public void sum() throws IOException {
-		for(Tree tree : handler.urlTree) {
+		for(Tree tree : urlTree) {
 			sumPostorder(tree.root);
 		}
 
@@ -82,7 +85,7 @@ public class Rank {
 	
 	public void print() {
 
-		for(Tree tree : handler.urlTree) {
+		for(Tree tree : urlTree) {
 			tree.eularPrintTree();
 		}
 	}
