@@ -9,7 +9,7 @@ public class WebPage {
 	public int num;
 	public WordCounter counter;
 	public double score;
-	public double sumScore;//the score add itself and its children
+	//the score add itself and its children
 	
 	
 	public WebPage(String url, String name) throws IOException {

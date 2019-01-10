@@ -61,8 +61,10 @@ public class HTMLHandler {
 		for (String item : searchResult.keySet()) {
 
 			if (searchResult.get(item).contains("http")) {
+
 				Tree tree = new Tree(new WebPage(searchResult.get(item), item));
 				treeList.add(tree);
+
 			}
 
 		}
@@ -116,7 +118,7 @@ public class HTMLHandler {
 
 				InputStream is = conn.getInputStream();
 
-				//conn.getContentEncoding();
+				// conn.getContentEncoding();
 				// 一般按行讀取網頁數據，並進行內容分析
 				// 因此用BufferedReader和InputStreamReader把字節流轉化為字符流的緩衝流
 				// 進行轉換時，需要處理編碼格式問題
@@ -171,11 +173,11 @@ public class HTMLHandler {
 				br.close();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				//e.printStackTrace();
+				// e.printStackTrace();
 				System.out.println("Wait...");
 			}
 			// 將當前url歸列到alloverurl中
-			//alloverurl.add(strurl);
+			// alloverurl.add(strurl);
 			// System.out.println(strurl + "網頁爬取完成，已爬取數量：" + alloverurl.size() + "，剩餘爬取數量："
 			// + allwaiturl.size());
 		}

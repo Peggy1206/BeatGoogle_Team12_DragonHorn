@@ -13,7 +13,6 @@ public class WordCounter {
 	private String urlStr;
 	private String content;
 
-
 	// constructor
 	public WordCounter(String urlStr) throws IOException {
 		this.urlStr = urlStr;
@@ -21,31 +20,32 @@ public class WordCounter {
 
 	private String fetchContent() throws IOException {
 		// HW3
-
-		URL url = new URL(this.urlStr);
-		URLConnection conn = url.openConnection();
-		InputStream in = conn.getInputStream();
-		BufferedReader br = new BufferedReader(new InputStreamReader(in));
-		
 		String retVal = "";
-		String line = null;
-		
-		while((line = br.readLine()) != null) {
-			retVal = retVal + line + "\n";
+		try {
+			URL url = new URL(this.urlStr);
+			URLConnection conn = url.openConnection();
+			InputStream in = conn.getInputStream();
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+			String line = null;
+
+			while ((line = br.readLine()) != null) {
+				retVal = retVal + line + "\n";
+				//System.out.println(retVal);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Wait...:)");
 		}
 		return retVal;
-	
-	/*InputStream in = address.openStream();
-BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-StringBuilder result = new StringBuilder();
-String line;
-while((line = reader.readLine()) != null) {
-    result.append(line);
-}
-System.out.println(result.toString());*/
+
+		/*
+		 * InputStream in = address.openStream(); BufferedReader reader = new
+		 * BufferedReader(new InputStreamReader(in)); StringBuilder result = new
+		 * StringBuilder(); String line; while((line = reader.readLine()) != null) {
+		 * result.append(line); } System.out.println(result.toString());
+		 */
 	}
-
-
 
 	public int countKeyword(String k) throws IOException {
 		// HW3
@@ -69,6 +69,6 @@ System.out.println(result.toString());*/
 		}
 
 		return retVal;
-	}
 
+	}
 }

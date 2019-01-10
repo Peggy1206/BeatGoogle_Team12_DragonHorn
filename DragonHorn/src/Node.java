@@ -17,7 +17,7 @@ public class Node {
 	
 	public void setNodeScore(ArrayList<Keyword> keywords) throws IOException {
 		webPage.setScore(keywords);
-		this.nodeScore = webPage.sumScore;
+		this.nodeScore = webPage.score;
 		
 		for(Node child : children) {
 			this.nodeScore += child.nodeScore;
