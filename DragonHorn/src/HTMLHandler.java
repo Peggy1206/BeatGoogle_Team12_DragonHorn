@@ -60,8 +60,9 @@ public class HTMLHandler {
 		ArrayList<Tree> treeList = new ArrayList<Tree>();
 		for (String item : searchResult.keySet()) {
 
-			if (searchResult.get(item).contains("http")) {
+			if (searchResult.get(item).contains("http") || !item.contains("Facebook")) {
 
+				
 				Tree tree = new Tree(new WebPage(searchResult.get(item), item));
 				treeList.add(tree);
 

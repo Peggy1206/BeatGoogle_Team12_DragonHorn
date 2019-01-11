@@ -24,12 +24,14 @@ public class Rank {
 		keyword.add(new Keyword("飲料",5));
 		keyword.add(new Keyword("政大",50));
 		keyword.add(new Keyword("師大",40));
-		keyword.add(new Keyword("龍角", 200));
-		keyword.add(new Keyword("黑眼豆豆",13));
+		keyword.add(new Keyword("龍角峰", -20));
+		keyword.add(new Keyword("黑眼豆豆" ,13));
 		keyword.add(new Keyword("蜂蜜牛奶",8));
-		keyword.add(new Keyword("珍芋各半",13));
+		keyword.add(new Keyword("珍芋各半",15));
 		keyword.add(new Keyword("純醇奶",13));
 		keyword.add(new Keyword("橙柚青",12));
+		keyword.add(new Keyword("攻略",-12));
+
 
 	}
 	
@@ -84,7 +86,7 @@ public class Rank {
 	public void getRankResult() {
 		ArrayList<Tree> list = quickSort(handler.urlTree);
 		for(Tree tree : list) {
-			System.out.println(tree.root.webPage.name + tree.root.nodeScore);
+			System.out.println(tree.root.webPage.name + " " +tree.root.nodeScore);
 		}
 		
 		
