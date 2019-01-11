@@ -18,25 +18,16 @@ import java.util.Scanner;
 
 public class HTMLHandler {
 
-	// 爬取過的url
-	private static Set<String> alloverurl = new HashSet<String>();
-	// 記錄所有url的深度進行爬取判斷
-	// private static Map<String, Integer> allurldepth = new HashMap<String,
-	// Integer>();
-	// 爬取得深度
-	private static int maxdepth = 2;
-
 	public ArrayList<Tree> urlTree;
 
-	// public DecideInput decide;
+	private static Set<String> alloverurl = new HashSet<String>();
 
 	public HashMap<String, String> searchResult;
 
 	String Keyword;
 
-	// public static ArrayList<Tree> urlTree = new ArrayList<Tree>();
-
-	// Get child from the url
+	// call GoogleQuery to get the search result, and put the result in the
+	// "searchResult"(HashMap)
 	public HTMLHandler() throws IOException {
 		searchResult = new HashMap<String, String>();
 
@@ -47,11 +38,15 @@ public class HTMLHandler {
 			searchResult = googleQuery.query();
 
 		}
-		// work();
+		// use all url in the searchResult to build the tree
+		// urlTree is a forest
 		urlTree = buildTree();
 
 	}
 
+	// put the url and the title in webPage, and use this webPage new a tree(webPage
+	// is the root)
+	// and treeList is a forest that put all trees
 	public ArrayList<Tree> buildTree() throws IOException {
 
 		ArrayList<Tree> treeList = new ArrayList<Tree>();
@@ -68,6 +63,7 @@ public class HTMLHandler {
 		return treeList;
 	}
 
+	// a method to check the content of urlTree
 	public String printUrlTree() {
 		StringBuilder result = new StringBuilder();
 		for (Tree url : urlTree) {
@@ -77,6 +73,7 @@ public class HTMLHandler {
 		return result.toString();
 	}
 
+	// For all trees in urlTree, do workurl() to get children
 	public void work() throws IOException {
 		for (Tree r : urlTree) {
 			String url = r.root.webPage.getUrl();
@@ -94,10 +91,12 @@ public class HTMLHandler {
 
 	}
 
+	// get children
 	public static ArrayList<String> workurl(String strurl) {
 		String href = "";
 		ArrayList<String> tempChild = new ArrayList<String>();
-		// 判斷當前url是否爬取過
+		// 創建url爬取核心對象
+
 		if (!(alloverurl.contains(strurl))) {
 			// 創建url爬取核心對象
 
@@ -147,23 +146,22 @@ public class HTMLHandler {
 							}
 						}
 						if (href.startsWith("http:") || href.startsWith("https:")) {
-							
+
 							// 將url地址放到隊列中
 							tempChild.add(href);
-							
+
 						}
 
 					}
 
 				}
-				
+
 				br.close();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				// e.printStackTrace();
 				System.out.println("Wait...");
 			}
-
 		}
 
 		return tempChild;

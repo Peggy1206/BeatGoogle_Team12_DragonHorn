@@ -31,7 +31,7 @@ public class WordCounter {
 
 			while ((line = br.readLine()) != null) {
 				retVal = retVal + line + "\n";
-				//System.out.println(retVal);
+				// System.out.println(retVal);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
