@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -26,52 +27,56 @@ public class WordCounter {
 	}
 
 	private String fetchContent() throws IOException {
-		if(this.urlStr.contains("likefoodway")==true) {
-			String no_server = "";
-			return no_server;
-		}
-		// HW3
-		String retVal = "";
-		try{
-			if(this.urlStr.contains("http")!=true) {
-				this.urlStr = "https://" + urlStr;
-			}
-			URL url = new URL(this.urlStr);
-			URLConnection conn = url.openConnection();
-			HttpURLConnection connection = (HttpURLConnection)conn;
-			if (HttpURLConnection.HTTP_OK == connection.getResponseCode()) {
-			InputStream in = conn.getInputStream();
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+		  if(this.urlStr.contains("likefoodway")==true) {
+		   String no_server = "";
+		   return no_server;
+		  }
+		  // HW3
+		  String retVal = "";
+		  try{
+		   if(this.urlStr.contains("http")!=true) {
+		    this.urlStr = "https://" + urlStr;
+		   }
+		   URL url = new URL(this.urlStr);
+		   URLConnection conn = url.openConnection();
+		   HttpURLConnection connection = (HttpURLConnection)conn;
+		   if (HttpURLConnection.HTTP_OK == connection.getResponseCode()) {
+		   InputStream in = conn.getInputStream();
+		   BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
-			String line = null;
+		   String line = null;
 
-			while ((line = br.readLine()) != null) {
-				retVal = retVal + line + "\n";
-				//System.out.println(retVal);
-			}
-			in.close();
-			}
-		} catch (MalformedURLException e) {
-			// TODO: handle exception
-			System.out.println("Wait...:)");
-			e.printStackTrace();
-			}
-			catch (SSLHandshakeException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		
-		
-		return retVal;
+		   while ((line = br.readLine()) != null) {
+		    retVal = retVal + line + "\n";
+		    //System.out.println(retVal);
+		   }
+		   in.close();
+		   }
+		  } catch (MalformedURLException e) {
+		   // TODO: handle exception
+		   System.out.println("Wait...:)");
+		   e.printStackTrace();
+		   }
+		   catch (SSLHandshakeException e) {
+		   // TODO: handle exception
+		   //e.printStackTrace();
+		    System.out.println("不安全的網站");
+		  }catch (ConnectException e) {
+		   // TODO: handle exception
+		   System.out.println("無法取得連線");
+		  }
+		  
+		  
+		  return retVal;
 
-		/*
-		 * InputStream in = address.openStream(); BufferedReader reader = new
-		 * BufferedReader(new InputStreamReader(in)); StringBuilder result = new
-		 * StringBuilder(); String line; while((line = reader.readLine()) != null) {
-		 * result.append(line); } System.out.println(result.toString());
-		 */
-	}
-
+		  /*
+		   * InputStream in = address.openStream(); BufferedReader reader = new
+		   * BufferedReader(new InputStreamReader(in)); StringBuilder result = new
+		   * StringBuilder(); String line; while((line = reader.readLine()) != null) {
+		   * result.append(line); } System.out.println(result.toString());
+		   */
+		 }
+	
 	public int countKeyword(String k) throws IOException {
 		// HW3
 
