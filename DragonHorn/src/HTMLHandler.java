@@ -125,6 +125,7 @@ public class HTMLHandler {
 				// 因此用BufferedReader和InputStreamReader把字節流轉化為字符流的緩衝流
 				// 進行轉換時，需要處理編碼格式問題
 				BufferedReader br = new BufferedReader(new InputStreamReader(is));
+				
 
 				// 按行讀取並打印
 				String line = null;
