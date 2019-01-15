@@ -41,7 +41,7 @@ public class Rank {
 		}
 	}
 	
-	//count nodes' score by postOrder
+	//count nodes' score
 	void countPostorder(Node node) throws IOException 
     { 
         if (node == null) {
@@ -83,12 +83,23 @@ public class Rank {
 		
 	}
 	
-	public void getRankResult() {
+	public String[][] getRankResult() {
 		ArrayList<Tree> list = quickSort(handler.urlTree);
+		String[][] result = new String[list.size()][2];
+		int num = 0;
 		for(Tree tree : list) {
-			System.out.println(tree.root.webPage.name + " " +tree.root.nodeScore);
+			//System.out.println(tree.root.webPage.name + " " +tree.root.nodeScore);
+			
+			    String key = tree.root.webPage.name;
+			    String value = String.valueOf(tree.root.nodeScore);
+			    result[num][0] = key;
+			    result[num][1] = value;
+			    num++;
+			}
+		return result;
 		}
 		
 		
-	}
+		
+	
 }

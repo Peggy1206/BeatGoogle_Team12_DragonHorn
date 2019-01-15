@@ -5,9 +5,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLHandshakeException;
 
 public class WordCounter {
 	private String urlStr;
@@ -19,11 +26,20 @@ public class WordCounter {
 	}
 
 	private String fetchContent() throws IOException {
+		if(this.urlStr.contains("likefoodway")==true) {
+			String no_server = "";
+			return no_server;
+		}
 		// HW3
 		String retVal = "";
-		try {
+		try{
+			if(this.urlStr.contains("http")!=true) {
+				this.urlStr = "https://" + urlStr;
+			}
 			URL url = new URL(this.urlStr);
 			URLConnection conn = url.openConnection();
+			HttpURLConnection connection = (HttpURLConnection)conn;
+			if (HttpURLConnection.HTTP_OK == connection.getResponseCode()) {
 			InputStream in = conn.getInputStream();
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
@@ -31,14 +47,29 @@ public class WordCounter {
 
 			while ((line = br.readLine()) != null) {
 				retVal = retVal + line + "\n";
-				// System.out.println(retVal);
+				//System.out.println(retVal);
 			}
-		} catch (Exception e) {
+			in.close();
+			}
+		} catch (MalformedURLException e) {
 			// TODO: handle exception
 			System.out.println("Wait...:)");
+			e.printStackTrace();
+			}
+			catch (SSLHandshakeException e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
+		
+		
 		return retVal;
 
+		/*
+		 * InputStream in = address.openStream(); BufferedReader reader = new
+		 * BufferedReader(new InputStreamReader(in)); StringBuilder result = new
+		 * StringBuilder(); String line; while((line = reader.readLine()) != null) {
+		 * result.append(line); } System.out.println(result.toString());
+		 */
 	}
 
 	public int countKeyword(String k) throws IOException {

@@ -22,7 +22,8 @@ public class GoogleQuery {
 		} else {
 			this.searchKeyword = searchKeyword + "龍角";
 		}
-		this.url = "https://www.google.com.tw/search?q=" + this.searchKeyword + "&oe=utf8&num=40";
+		this.url = "https://www.google.com.tw/search?q=" + this.searchKeyword + "&oe=utf8&num=10"
+				+ "";
 	}
 
 	private String fetchContent() throws IOException {
