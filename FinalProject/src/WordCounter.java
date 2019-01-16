@@ -27,7 +27,7 @@ public class WordCounter {
 		this.urlStr = urlStr;
 	}
 
-	private String fetchContent() {
+	private String fetchContent() throws IOException {
 		  if(this.urlStr.contains("likefoodway")==true) {
 		   String no_server = "";
 		   return no_server;
@@ -73,9 +73,6 @@ public class WordCounter {
 		}catch (SocketException e) {
 			// TODO: handle exception
 			System.out.println("socks");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("IO");
 		}
 		  
 		  
