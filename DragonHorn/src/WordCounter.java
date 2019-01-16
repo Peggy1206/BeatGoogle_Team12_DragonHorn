@@ -8,12 +8,13 @@ import java.io.InputStreamReader;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.SocketException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.charset.MalformedInputException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLHandshakeException;
 
@@ -64,7 +65,15 @@ public class WordCounter {
 		  }catch (ConnectException e) {
 		   // TODO: handle exception
 		   System.out.println("無法取得連線");
-		  }
+		  }catch (UnknownHostException e) {
+			// TODO: handle exception
+			   System.out.println("怪人");
+		}catch(ProtocolException e) {
+			System.out.println("再跳ㄚ");
+		}catch (SocketException e) {
+			// TODO: handle exception
+			System.out.println("socks");
+		}
 		  
 		  
 		  return retVal;
