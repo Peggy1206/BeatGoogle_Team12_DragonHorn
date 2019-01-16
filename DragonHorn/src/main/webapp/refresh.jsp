@@ -19,11 +19,12 @@
 <body>
 <img src="https://rmt-files.saowen.com/rmt_tk/img0/QjqiI3A.gif">
 <%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-            response.sendRedirect(basePath+ "googleitem.jsp");
+//     String path = request.getContextPath();
+//     String basePath = request.getScheme() + "://"
+//             + request.getServerName() + ":" + request.getServerPort()
+//             + path + "/";
+//             response.sendRedirect(basePath+ "googleitem.jsp");
+     response.sendRedirect( "googleitem.jsp");
 %>
 </body>
 </html>

@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.KeyStore.TrustedCertificateEntry;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/TestProject")
 public class TestProject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	static  String keyword = "";
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -45,14 +47,14 @@ public class TestProject extends HttpServlet {
 			request.getRequestDispatcher("Search.jsp").forward(request, response); 
 			return;
 		}
-		// 设置刷新自动加载时间为 5 秒
+//		// 设置刷新自动加载时间为 5 秒
 //        response.setIntHeader("Refresh", 5);
-		
+//		try {
 //        String requestUri = request.getRequestURI();
 //		request.setAttribute("requestUri", requestUri);
 //        request.getRequestDispatcher("refresh.jsp")
 //		 .forward(request, response); 
-        
+//		
 //		response.sendRedirect("refresh.jsp");
 		HTMLHandler handeler = new HTMLHandler(request.getParameter("keyword"));
 		//System.out.println(handeler.printUrlTree());
@@ -67,9 +69,13 @@ public class TestProject extends HttpServlet {
 		
 		String[][] s = rank.getRankResult();
 		request.setAttribute("query", s);
-		//轉發至jsp	
-		request.getRequestDispatcher("googleitem.jsp") 
-		.forward(request, response); 
+//		}catch(NullPointerException e) {
+//			System.out.println("不能跑");
+//		}
+		
+//		//轉發至jsp	
+//		request.getRequestDispatcher("googleitem.jsp") 
+//		.forward(request, response); 
 	
 }
 	
