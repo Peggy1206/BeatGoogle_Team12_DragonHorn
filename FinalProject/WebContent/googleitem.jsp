@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>GoogleSearch</title>
+<title>GooDragon</title>
 <style>
 body {
   margin: 0;
@@ -19,16 +19,17 @@ body {
 </style>
 <body>
 <div class="header">
-  <h1>GooDragon</h1>
+  <h1 style="font-size:24px ;">  GooDragon</h1>
 </div>
-
+<p>
 <%
 String[][] orderList = (String[][]) request.getAttribute("query");
 for(int i =0 ; i < orderList.length;i++){%>
-	<a href='<%= orderList[i][1] %>'><%= orderList[i][0] %></a><br><h style="font-size:5px ;"><%= orderList[i][1] %></h><br><br>
+	<a href='<%= orderList[i][1] %>'><%= orderList[i][0] %></a><br><h style="font-size:12px ;"><%= orderList[i][1] %></h><br><br>
 <%
 }
 %>
+</p>
 </body>
 </head>
 </html>
