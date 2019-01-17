@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/TestProject")
 public class TestProject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	static String keyword = "";
+	public static String keyword = "";
 	public static String[][] result;
 	static boolean isRunning = false;
 
@@ -70,6 +70,7 @@ public class TestProject extends HttpServlet {
 					for (Tree tree : handeler.urlTree) {
 						tree.eularPrintTree();
 					}
+				//	rank.getRankResult();
 
 					result = rank.getRankResult();
 				} catch (IOException e) {
@@ -89,9 +90,9 @@ public class TestProject extends HttpServlet {
 			if (!isRunning)
 				thread.start();
 
-			// response.sendRedirect("refresh.jsp");
+	
 		} else {
-
+	
 			request.setAttribute("query", result);
 			request.getRequestDispatcher("googleitem.jsp").forward(request, response);
 		}

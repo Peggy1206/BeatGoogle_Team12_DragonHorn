@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLHandshakeException;
+import javax.net.ssl.SSLProtocolException;
 
 public class WordCounter {
 	private String urlStr;
@@ -73,6 +74,8 @@ public class WordCounter {
 		}catch (SocketException e) {
 			// TODO: handle exception
 			System.out.println("socks");
+		}catch(SSLProtocolException e) {
+			System.out.println("unrecognized");
 		}
 		  
 		  

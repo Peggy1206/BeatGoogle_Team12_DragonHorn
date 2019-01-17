@@ -10,6 +10,7 @@ public class Rank {
 	//public DecideInput userInput;
 	public HTMLHandler handler;
 	public ArrayList<Keyword> keyword = new ArrayList<Keyword>();
+	public String input = GoogleQuery.searchKeyword;
 	
 	public Rank(HTMLHandler handler) throws IOException{
 		
@@ -19,17 +20,17 @@ public class Rank {
 	}
 	
 	private void addKeyword() {
-		
+		keyword.add(new Keyword(input, 100));
 		keyword.add(new Keyword("龍角散",-100));
 		keyword.add(new Keyword("飲料",5));
-		keyword.add(new Keyword("政大",50));
-		keyword.add(new Keyword("師大",40));
+		keyword.add(new Keyword("政大",5));
+		keyword.add(new Keyword("師大",4));
 		keyword.add(new Keyword("龍角峰", -20));
-		keyword.add(new Keyword("黑眼豆豆" ,13));
-		keyword.add(new Keyword("蜂蜜牛奶",8));
-		keyword.add(new Keyword("珍芋各半",15));
-		keyword.add(new Keyword("純醇奶",13));
-		keyword.add(new Keyword("橙柚青",12));
+//		keyword.add(new Keyword("黑眼豆豆" ,13));
+//		keyword.add(new Keyword("蜂蜜牛奶",8));
+//		keyword.add(new Keyword("珍芋各半",15));
+//		keyword.add(new Keyword("純醇奶",13));
+//		keyword.add(new Keyword("橙柚青",12));
 		keyword.add(new Keyword("攻略",-12));
 
 
@@ -83,14 +84,15 @@ public class Rank {
 		
 	}
 	
-	public String[][] getRankResult() {
+	public String [][] getRankResult() {
 		ArrayList<Tree> list = quickSort(handler.urlTree);
 		String[][] result = new String[list.size()][2];
 		int num = 0;
 		for(Tree tree : list) {
-			//System.out.println(tree.root.webPage.name + " " +tree.root.nodeScore);
+			System.out.println(tree.root.webPage.name + " " +tree.root.nodeScore);
 			
 			    String key = tree.root.webPage.name;
+//			    String value = String.valueOf(tree.root.nodeScore);
 			    String value = tree.root.webPage.getUrl();
 			    result[num][0] = key;
 			    result[num][1] = value;

@@ -11,7 +11,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class GoogleQuery {
-	public String searchKeyword;
+	public static String searchKeyword;
 	public String url;
 	public String content;
 
@@ -22,7 +22,7 @@ public class GoogleQuery {
 		} else {
 			this.searchKeyword = searchKeyword + "龍角";
 		}
-		this.url = "https://www.google.com.tw/search?q=" + this.searchKeyword + "&oe=utf8&num=15"
+		this.url = "https://www.google.com.tw/search?q=" + this.searchKeyword + "&oe=utf8&num=40"
 				+ "";
 	}
 

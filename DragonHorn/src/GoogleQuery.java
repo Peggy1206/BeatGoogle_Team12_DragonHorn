@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
@@ -22,17 +23,20 @@ public class GoogleQuery {
 		} else {
 			this.searchKeyword = searchKeyword + "龍角";
 		}
-		this.url = "https://www.google.com.tw/search?q=" + this.searchKeyword + "&oe=utf8&num=15"
+		this.url = "https://www.google.com.tw/search?q=" + this.searchKeyword + "&oe=utf8&num=40"
 				+ "";
 	}
 
 	private String fetchContent() throws IOException {
 		String retVal = "";
 		URL urlStr = new URL(this.url);
-		URLConnection connection = urlStr.openConnection();
+		URLConnection conn = urlStr.openConnection();
+		HttpURLConnection connection = (HttpURLConnection)conn;
+		if (HttpURLConnection.HTTP_OK == connection.getResponseCode()) {
 		connection.setRequestProperty("User-Agent",
 				"Mozilla/5.0(Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
 		connection.connect();
+		
 		InputStream inputStream = connection.getInputStream();
 		InputStreamReader inReader = new InputStreamReader(inputStream, "UTF8");
 		BufferedReader bf = new BufferedReader(inReader);
@@ -40,6 +44,8 @@ public class GoogleQuery {
 		String line = null;
 		while ((line = bf.readLine()) != null) {
 			retVal += line;
+		}
+		inputStream.close();
 		}
 		return retVal;
 	}
