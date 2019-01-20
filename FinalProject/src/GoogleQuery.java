@@ -22,8 +22,7 @@ public class GoogleQuery {
 		} else {
 			this.searchKeyword = searchKeyword + "龍角";
 		}
-		this.url = "https://www.google.com.tw/search?q=" + this.searchKeyword + "&oe=utf8&num=40"
-				+ "";
+		this.url = "https://www.google.com.tw/search?q=" + this.searchKeyword + "&oe=utf8&num=40" + "";
 	}
 
 	private String fetchContent() throws IOException {
@@ -57,12 +56,8 @@ public class GoogleQuery {
 				Element h3 = li.select("h3.r").get(0);
 				String title = h3.text();
 
-//				Element cite = li.getElementsByTag("a").first();
-//				String citeUrl = "https://www.google.com.tw"+ cite.attr("href");
-				
 				Element cite = li.select("cite").get(0);
 				String citeUrl = cite.text();
-				// System.out.println(title + " " + citeUrl);
 				retVal.put(title, citeUrl);
 			} catch (IndexOutOfBoundsException e) {
 				// Do nothing

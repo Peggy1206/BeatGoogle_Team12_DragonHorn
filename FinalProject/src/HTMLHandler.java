@@ -35,23 +35,15 @@ public class HTMLHandler {
 
 	String Keyword;
 
-	// public static ArrayList<Tree> urlTree = new ArrayList<Tree>();
-
 	// Get child from the url
 	public HTMLHandler(String key) throws IOException {
-		
-		// this.decide = decide;
-		// urlTree = new ArrayList<Tree>();
+
 		searchResult = new HashMap<String, String>();
 
-		//Scanner scanner = new Scanner(System.in);
-		//if (scanner.hasNext()) {
-			Keyword = key;
-			GoogleQuery googleQuery = new GoogleQuery(Keyword);
-			searchResult = googleQuery.query();
+		Keyword = key;
+		GoogleQuery googleQuery = new GoogleQuery(Keyword);
+		searchResult = googleQuery.query();
 
-		//}
-		// work();
 		urlTree = buildTree();
 
 	}
@@ -63,7 +55,6 @@ public class HTMLHandler {
 
 			if (searchResult.get(item).contains("http") || !item.contains("Facebook")) {
 
-				
 				Tree tree = new Tree(new WebPage(searchResult.get(item), item));
 				treeList.add(tree);
 
@@ -125,7 +116,6 @@ public class HTMLHandler {
 				// 因此用BufferedReader和InputStreamReader把字節流轉化為字符流的緩衝流
 				// 進行轉換時，需要處理編碼格式問題
 				BufferedReader br = new BufferedReader(new InputStreamReader(is));
-				
 
 				// 按行讀取並打印
 				String line = null;
@@ -172,23 +162,13 @@ public class HTMLHandler {
 					}
 
 				}
-				// pw.close();
 				br.close();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				// e.printStackTrace();
+
 				System.out.println("Wait...");
 			}
-			// 將當前url歸列到alloverurl中
-			// alloverurl.add(strurl);
-			// System.out.println(strurl + "網頁爬取完成，已爬取數量：" + alloverurl.size() + "，剩餘爬取數量："
-			// + allwaiturl.size());
+
 		}
-		// 用遞歸的方法繼續爬取其他鏈接
-		/*
-		 * String nexturl = allwaiturl.get(0); allwaiturl.remove(0); workurl(nexturl,
-		 * allurldepth.get(nexturl));
-		 */
 
 		return tempChild;
 	}
